@@ -2,18 +2,18 @@ import React from 'react';
 import _ from 'underscore';
 import ReactD3 from 'react-d3-components';
 import * as db from '../models/menu';
-import UserMoves from './Stats_UserMoves';
 
-export default class ScoresChart extends React.Component {
+export default class UserMoves extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       fbName:'',
       userScores: [], // [{wins:4},{losses:2}]
-      wins: 0,
-      losses: 0,
-      pieChartValues: [{x: 'wins', y: 0}, {x: 'losses', y: 0}]
+      paper: 0,
+      scissors:0,
+      rock: 0,
+      pieChartValues: [{x: 'paper', y: 0}, {x: 'scissors', y: 0},{x: 'rock', y: 0}]
     }
   }
 
@@ -38,10 +38,11 @@ export default class ScoresChart extends React.Component {
 
   updateUserScoresState(user) {
 
-      this.setState({wins: user.wins});
-      this.setState({losses: user.losses});
-      console.log('3~~~~',this.state.wins)
-      console.log('4~~~~',this.state.losses)
+      this.setState({paper: user.paper});
+      this.setState({scissors: user.scissors});
+      this.setState({rock: user.rock});
+      //console.log('3~~~~',this.state.wins)
+      //console.log('4~~~~',this.state.losses)
      
       this.generateLeaderBoard();
 
@@ -53,9 +54,9 @@ export default class ScoresChart extends React.Component {
     //   return {x: key, y: userScore[key]}
     // })
 
-    this.setState({pieChartValues: [{x: 'wins', y: this.state.wins}, {x: 'losses', y: this.state.losses}]})
+    this.setState({pieChartValues: [{x: 'paper', y: this.state.paper}, {x: 'scissors', y: this.state.scissors},{x: 'rock', y: this.state.rock}]})
   }
-  //[{x: 'wins', y: 0}, {x: 'losses', y: 0}]
+  //[{x: 'paper', y: 0}, {x: 'scissors', y: 0},{x: 'rock', y: 0}]
 
   tooltipPieChart(x,y) {
     //console.log(x,y)
@@ -74,15 +75,7 @@ export default class ScoresChart extends React.Component {
         <div className="col-xs-12 text-center">
           <br/>
           <br/>
-          {sessionStorage.getItem('fbUser') 
-            ?
               <div>
-              <h2> Stats for {this.state.fbName}: </h2>
-              <hr/>
-              {(!this.state.losses)? <h4> No Losses so far!</h4>: null}
-              {(!this.state.wins)? <h4> No Wins so far...</h4>: null}
-              {(this.state.wins) || (this.state.losses)
-                ? <div>
                   <PieChart
                          data={data}
                          width={600}
@@ -92,15 +85,8 @@ export default class ScoresChart extends React.Component {
                          tooltipMode={'fixed'}
                          tooltipOffset={{top: 135, left: 200}}
                        />
-
-                   <UserMoves />
-                  </div>
                   
-                : <h4> You haven't played any games yet. </h4>
-              }
-              </div>
-            : <h2>Please log in to see your stats.</h2>
-          }
+               </div>
         </div>
 
     )
