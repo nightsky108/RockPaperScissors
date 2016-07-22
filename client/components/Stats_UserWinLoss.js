@@ -75,20 +75,26 @@ export default class ScoresChart extends React.Component {
           <br/>
           {sessionStorage.getItem('fbUser') 
             ?
-            <div>
-            <h2> Stats for {this.state.fbName}: </h2>
-            <hr/>
-            {(!this.state.losses)? <h4> No Losses so far!</h4>: null}
-            <PieChart
-                   data={data}
-                   width={600}
-                   height={400}
-                   margin={{top: 30, bottom: 10, left: 100, right: 100}}                
-                   tooltipHtml={this.tooltipPieChart}
-                   tooltipMode={'fixed'}
-                   tooltipOffset={{top: 135, left: 200}}
-                 />
-            </div>
+              <div>
+              <h2> Stats for {this.state.fbName}: </h2>
+              <hr/>
+              {(!this.state.losses)? <h4> No Losses so far!</h4>: null}
+              {(!this.state.wins)? <h4> No Wins so far...</h4>: null}
+              {(this.state.wins) || (this.state.losses)
+                ? 
+                  <PieChart
+                         data={data}
+                         width={600}
+                         height={400}
+                         margin={{top: 30, bottom: 10, left: 100, right: 100}}                
+                         tooltipHtml={this.tooltipPieChart}
+                         tooltipMode={'fixed'}
+                         tooltipOffset={{top: 135, left: 200}}
+                       />
+                  
+                : <h4> You haven't played any games yet. </h4>
+              }
+              </div>
             : <h2>Please log in to see your stats.</h2>
           }
         </div>
