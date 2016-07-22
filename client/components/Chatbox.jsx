@@ -37,8 +37,8 @@ export default class Chatbox extends React.Component {
         time: moment()
       })
     }
-
-    // send request to the socket.io
+    
+    // clear input after each msg
     this.setState({
       text: ""
     })
