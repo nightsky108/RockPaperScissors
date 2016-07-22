@@ -109,9 +109,9 @@ a {
   margin: auto;
 }
 #btn-input {
-  margin: -21px auto !important;
+  margin: 1px auto !important;
   width: 100% !important;
-  
+
 }
 input[type="text"] {
 
