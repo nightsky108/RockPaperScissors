@@ -340,3 +340,44 @@ input[type="text"] {
   display: block !important;
   opacity: 1 !important;
 }
+
+/*
+  =========================================================
+  Media Query -- Small Devices, Tablets
+  =========================================================
+*/
+
+    @media only screen and (max-width : 768px) {
+      .navbar-header {
+        height: 0 !important;
+      }
+      .navbar .collapse {
+        display: block;
+        width: 100%;
+        position: absolute;
+      }
+
+      .navbar .navbar-nav {
+        float: left;
+        marign-top: -20px;
+      }
+
+      .dropdown .dropdown-menu {
+        position: absolute !important;
+      }
+      .collapse .fb {
+        text-align: right;
+        marign-top: -20px !important;
+      }
+      li.dropdown {
+        position: static !important;
+      }
+    }
+
+     @media only screen and (max-width : 430px) {
+        .collapse .fb {
+          text-align: left;
+          float: left;
+          padding-bottom: 10px;
+        }
+    }
