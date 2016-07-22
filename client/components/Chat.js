@@ -24,7 +24,6 @@ export default class Chat extends React.Component {
     var self = this
     socket.on("chat message",
       function (msg) {
-      console.log("socket.on: ", msg)
       self.setState({
         messages: self.state.messages.concat(msg)
       })
