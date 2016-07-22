@@ -9,31 +9,29 @@ export default class ScoresChart extends React.Component {
     super(props);
     this.state = {
       userScores: [], // [{uu1:4},{uu2:2}]
-        barChartValues: [
+      barChartValues: [
       {
       label: 'somethingA',
             values: [
-                {x: 'SomethingA', y: 10}, //{x: user1.name, y: user1.wins}
-                {x: 'SomethingC', y: 3}//{x: user2.name, y: user2.wins}
+                {x: 'Top User 1', y: 10}, //{x: user1.name, y: user1.wins}
+                {x: 'Top User 2', y: 3}//{x: user2.name, y: user2.wins}
             ]
       },
       {
       label: 'somethingB',
             values: [
-                {x: 'SomethingA', y: 6},//{x: user1.name, y: user1.losses}
-                {x: 'SomethingC', y: 5}//{x: user2.name, y: user2.losses}
+                {x: 'Top User 1', y: 6},//{x: user1.name, y: user1.losses}
+                {x: 'Top User 2', y: 5}//{x: user2.name, y: user2.losses}
             ]
       }   
       ]
     }
-
-    // this.structureData();
   }
 
  
   componentDidMount() {
     
-    console.log("in component did mount")
+    //console.log("in component did mount")
     this.structureData();
   }
 
@@ -55,14 +53,10 @@ export default class ScoresChart extends React.Component {
           barChartData[0].values.push({x: player.name, y: player.wins})
           barChartData[1].values.push({x: player.name, y: player.losses})
         })
-        console.log("showing barChartData:", barChartData);
+        //console.log("showing barChartData:", barChartData);
         this.setState({barChartValues: barChartData});
       })
   }
-
-  
-
-  
 
   tooltipStacked(x, y0, y, total) {
     //console.log('3~~~~',x,y0,y,total)
@@ -71,10 +65,10 @@ export default class ScoresChart extends React.Component {
 
   render() {
     // this.structureData();
-    console.log("stats_scores.js got run")
+    //console.log("stats_scores.js got run")
     const BarChart = ReactD3.BarChart;
     const data = this.state.barChartValues
-    console.log("Showing data before graph creation:", data);
+    //console.log("Showing data before graph creation:", data);
 
     return (
         <div className="col-xs-12 text-center">
@@ -88,18 +82,9 @@ export default class ScoresChart extends React.Component {
                    tooltipHtml={this.tooltipStacked}
                    tooltipMode={'element'}
                    tooltipOffset={{top: 0, left: 0}}
-                 />
-            
+                 />          
         </div>
 
     )
   }
 }
-
-
-
-
-
-
-
-

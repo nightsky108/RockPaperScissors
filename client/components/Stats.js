@@ -35,9 +35,6 @@ export default class Stats extends React.Component {
             <ScoresChart />
           </div>
           <div className="row">
-            <WinsChart />
-          </div>
-          <div className="row">
            <UserWinLoss />
           </div>
         </div>
