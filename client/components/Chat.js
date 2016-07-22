@@ -14,21 +14,13 @@ export default class Chat extends React.Component {
   componentWillMount() {
     this.gameId = sessionStorage.getItem("gameId");
     this.fbUser = sessionStorage.getItem("fbUser");
-    this.setState({
-      username: this.fbUser
-    })
+    this.setState({username: this.fbUser})
 
     // this.userId = sessionStorage.getItem('userId');
 
     socket.emit("subscribe", this.gameId);
     var self = this
-    socket.on("chat message",
-      function (msg) {
-      self.setState({
-        messages: self.state.messages.concat(msg)
-      })
-    }
-    );
+    socket.on("chat message", (msg) => self.setState({messages: self.state.messages.concat(msg)}));
   }
 
   _handleSubmit(e) {
@@ -38,9 +30,7 @@ export default class Chat extends React.Component {
     this.gameId = sessionStorage.getItem("gameId");
     socket.emit("send", {
       room   : this.gameId,
-      name   : self.state.username
-        ? self.state.username
-        : self.props.player.name,
+      name   : self.state.username ? self.state.username : self.props.player.name,
       message: this.state.chatText,
     })
 
@@ -64,9 +54,7 @@ export default class Chat extends React.Component {
               onChange={event => this.setState({chatText: event.target.value})}
 							/>
 
-            <input type="submit" style={{
-              visibility: "hidden"
-            }}></input>
+            <input type="submit" style={{visibility: "hidden"}}></input>
           </form>
           <table className="table table-hover">
             <tbody>
